@@ -13,7 +13,7 @@
     <header class="header">
       <img src="/image/logo.png" class="logo" alt="Logo Pertamina">
       <div class="title">INFORMATION AND<br>COMMUNICATION TECHNOLOGY</div>
-      <button class="login-button" onclick="window.location.href='{{ route('login') }}'">Login</button>
+      <button class="login-button" onclick="slideToLogin()">Login</button>
     </header>
 
     <div class="register-container">
@@ -84,6 +84,16 @@
           alert.style.display = 'none';
         }, 300);
       }
+    }
+
+    // Fade animation function
+    function slideToLogin() {
+      const page = document.querySelector('.register-page');
+      page.classList.add('fade-out');
+      
+      setTimeout(function() {
+        window.location.href = '{{ route('login') }}';
+      }, 300);
     }
   </script>
 </body>

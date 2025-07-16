@@ -1,0 +1,198 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Sansation', sans-serif;
+}
+.dashboard-bg {
+    min-height: 100vh;
+    background: linear-gradient(to top, rgba(237, 28, 36, 0.75), rgba(237, 28, 36, 0.25));
+    display: flex;
+    flex-direction: column;
+}
+.navbar-dashboard {
+    width: 100%;
+    min-height: 64px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    backdrop-filter: blur(2px);
+    opacity: 1;
+    pointer-events: auto;
+    border-radius: 0 0 28px 28px;
+}
+.navbar-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.profile-btn {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #ed1c24;
+    font-size: 18px;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+.profile-btn:hover {
+    background: rgba(255,255,255,0.15);
+}
+.profile-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    color: #ed1c24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 8px;
+    border: 2px solid #fff;
+}
+.logout-btn-navbar {
+    background: #ed1c24;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 20px;
+    margin-left: 8px;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    padding: 6px 18px;
+}
+.logout-btn-navbar:hover {
+    background: rgba(255,255,255,0.15);
+    color: #ed1c24;
+}
+.dashboard-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 64px;
+}
+.modal-profile-bg {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.3);
+    align-items: center;
+    justify-content: center;
+}
+.modal-profile-bg.active {
+    display: flex;
+}
+.modal-profile {
+    background: #fff;
+    border-radius: 20px;
+    padding: 36px 32px 28px 32px;
+    min-width: 340px;
+    max-width: 95vw;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    position: relative;
+}
+.profile-overview-table {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 32px;
+}
+.profile-overview-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 12px 18px;
+    box-shadow: 0 2px 8px rgba(237,28,36,0.04);
+}
+.profile-overview-icon {
+    font-size: 22px;
+    color: #ed1c24;
+    width: 32px;
+    text-align: center;
+}
+.profile-info-label {
+    font-weight: bold;
+    color: #ed1c24;
+    min-width: 80px;
+    font-size: 15px;
+}
+.profile-info-value {
+    font-size: 17px;
+    color: #222;
+    font-weight: 500;
+    flex: 1;
+    text-align: right;
+}
+.btn-detail-profile {
+    background: #ed1c24;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 12px 36px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(237,28,36,0.08);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.btn-detail-profile:hover {
+    background: #c4141a;
+    box-shadow: 0 4px 16px rgba(237,28,36,0.15);
+}
+.home-btn-navbar {
+    background: #ed1c24;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 20px;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    padding: 6px 24px;
+    font-size: 20px;
+    font-family: inherit;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+.home-btn-navbar:hover {
+    background: rgba(255,255,255,0.15);
+    color: #ed1c24;
+}
+.dashboard-bg, .navbar-dashboard, .profile-btn, .logout-btn-navbar, .home-btn-navbar {
+    box-sizing: border-box;
+}
+.profile-btn, .logout-btn-navbar, .home-btn-navbar {
+    font-family: 'Sansation', sans-serif;
+    color: #ed1c24;
+    background: none;
+    border: none;
+    box-shadow: none;
+    transition: color 0.2s, transform 0.2s;
+}
+.logout-btn-navbar:hover, .home-btn-navbar:hover, .profile-btn:hover {
+    background: none;
+    color: #c4141a;
+    transform: scale(1.12);
+}
+.logout-btn-navbar svg,
+.home-btn-navbar svg {
+    stroke: #ed1c24 !important;
+} 

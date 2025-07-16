@@ -13,7 +13,7 @@
     <header class="header">
       <img src="/image/logo.png" class="logo" alt="Logo Pertamina">
       <div class="title">INFORMATION AND<br>COMMUNICATION TECHNOLOGY</div>
-      <button class="login-button" onclick="window.location.href='{{ route('register') }}'">Register</button>
+      <button class="login-button" onclick="slideToRegister()">Register</button>
     </header>
 
     <div class="register-container">
@@ -53,6 +53,12 @@
   </div>
 
   <script>
+    // Add fade-in animation when page loads
+    window.addEventListener('load', function() {
+      const page = document.querySelector('.register-page');
+      page.classList.add('fade-in');
+    });
+
     // Auto-hide alert after 5 seconds
     setTimeout(function() {
       const alert = document.getElementById('alert-message');
@@ -73,6 +79,16 @@
           alert.style.display = 'none';
         }, 300);
       }
+    }
+
+    // Fade animation function
+    function slideToRegister() {
+      const page = document.querySelector('.register-page');
+      page.classList.add('fade-out');
+      
+      setTimeout(function() {
+        window.location.href = '{{ route('register') }}';
+      }, 300);
     }
   </script>
 </body>
