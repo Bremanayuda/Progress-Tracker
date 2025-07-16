@@ -75,7 +75,6 @@
         </div>
     </div>
     <script>
-        // Modal Profile
         function openProfileModal() {
             document.getElementById('modalProfileBg').classList.add('active');
         }
@@ -87,11 +86,9 @@
             window.location.href = "{{ route('profile.show') }}";
         }
         document.getElementById('openProfileModal').onclick = openProfileModal;
-        // Close modal on background click only
         document.getElementById('modalProfileBg').onclick = function(e) {
             if (e.target === this) closeProfileModal();
         };
-        // Optional: close modal on ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeProfileModal();
         });

@@ -12,7 +12,7 @@
   <div class="register-page">
     <header class="header">
       <img src="/image/logo.png" class="logo" alt="Logo Pertamina">
-      <div class="title">INFORMATION AND<br>COMMUNICATION TECHNOLOGY</div>
+      <div class="title"><B>ZONA 11 FIELD CEPU</B></div>
       <button class="login-button" onclick="slideToRegister()">Register</button>
     </header>
 
