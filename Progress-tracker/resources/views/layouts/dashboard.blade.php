@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/layouts.css" />
 </head>
 <body>
+    <div class="nocaret">
     <div class="dashboard-bg">
         <div id="navbarSpoiler" class="navbar-spoiler">
             <span class="navbar-spoiler-icon">
@@ -19,16 +20,43 @@
         <nav class="navbar-dashboard" id="navbar-dashboard">
             <div class="navbar-profile">
                 <button class="profile-btn" id="openProfileModal">
-                    <span class="profile-avatar">{{ strtoupper(substr(Auth::user()->name,0,1)) }}</span>
+                    @if(Auth::user()->foto)
+                        <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto Profil" class="profile-avatar" style="width:40px; height:40px; border-radius:50%; object-fit:cover; margin-right:8px;">
+                    @else
+                        <span class="profile-avatar">{{ strtoupper(substr(Auth::user()->name,0,1)) }}</span>
+                    @endif
                     <span>{{ Auth::user()->name }}</span>
                 </button>
             </div>
-            <div style="flex:1; display:flex; justify-content:center;">
-                <a href="{{ url('/dashboard') }}" class="profile-btn home-btn-navbar" style="margin:0 12px;">
-                    <span style="display:inline-block; vertical-align:middle; margin-right:7px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12L12 3l9 9"/><path d="M9 21V9h6v12"/></svg>
-                    </span>Home
-                </a>
+            <div style="flex:1; display:flex; justify-content:center; align-items:center; gap:12px;">
+                @if(Auth::user()->role === 'koor')
+                    <div style="flex:1; display:flex; align-items:center; justify-content:flex-end;">
+                    </div>
+                    <div style="flex:0 0 auto; display:flex; align-items:center; justify-content:center;">
+                        <a href='{{ url('/dashboard') }}' class='profile-btn home-btn-navbar'>
+                            <span style='display:inline-block; vertical-align:middle; margin-right:7px;'>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 12L12 3l9 9'/><path d='M9 21V9h6v12'/></svg>
+                            </span>Home
+                        </a>
+                    </div>
+                    <div style="flex:1; display:flex; align-items:center; justify-content:flex-start;">
+                    </div>
+                    <div style="flex:0 0 auto; display:flex; align-items:center; justify-content:flex-end; margin-left:auto;">
+                        <a href='#' class='profile-btn' id='notifBell' style='position:relative;'>
+                            <span style='display:inline-block; vertical-align:middle;'>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='#ed1c24' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9'/><path d='M13.73 21a2 2 0 0 1-3.46 0'/></svg>
+                            </span>
+                            @php $notifCount = (isset($pendingCount) ? $pendingCount : 0) + (isset($lateCount) ? $lateCount : 0); @endphp
+                            @if($notifCount > 0)
+                                <span style='position:absolute; top:0; right:0; background:#ed1c24; color:#fff; border-radius:50%; font-size:12px; padding:2px 7px; min-width:22px; text-align:center; font-weight:700;'>{{ $notifCount }}</span>
+                            @endif
+                        </a>
+                    </div>
+                @elseif(Auth::user()->role === 'general')
+                    <a href="{{ route('general.peminjaman.create') }}" class="profile-btn">Ajukan Peminjaman</a>
+                @elseif(Auth::user()->role === 'ICT')
+                    <a href="{{ route('ict.peminjaman.list') }}" class="profile-btn">Riwayat Peminjaman</a>
+                @endif
             </div>
             <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
                 @csrf
@@ -46,6 +74,13 @@
     <!-- Modal Profile -->
     <div class="modal-profile-bg" id="modalProfileBg">
         <div class="modal-profile" id="modalProfileBox">
+            <div style="text-align:center; margin-bottom:18px;">
+                @if(Auth::user()->foto)
+                    <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Foto Profil" style="width:64px; height:64px; border-radius:50%; object-fit:cover;">
+                @else
+                    <span class="profile-avatar" style="width:64px; height:64px; font-size:32px; display:inline-flex; align-items:center; justify-content:center;">{{ strtoupper(substr(Auth::user()->name,0,1)) }}</span>
+                @endif
+            </div>
             <h2 style="text-align:center; margin-bottom: 24px;">Profile</h2>
             <div class="profile-overview-table">
                 <div class="profile-overview-row">
@@ -70,10 +105,11 @@
                 </div>
             </div>
             <div style="text-align:center;">
-                <button type="button" class="btn-detail-profile" onclick="goToProfileDetail()">Lihat Detail</button>
+                <button type="button" class="btn-detail-profile" onclick="goToProfileEdit()">Edit Profile</button>
             </div>
         </div>
     </div>
+</div>
     <script>
         function openProfileModal() {
             document.getElementById('modalProfileBg').classList.add('active');
@@ -83,9 +119,18 @@
         }
         function goToProfileDetail() {
             closeProfileModal();
-            window.location.href = "{{ route('profile.show') }}";
+            window.location.href = "{{ route('profile.edit') }}";
         }
-        document.getElementById('openProfileModal').onclick = openProfileModal;
+        function goToProfileEdit() {
+            closeProfileModal();
+            window.location.href = "{{ route('profile.edit') }}";
+        }
+        // Nonaktifkan modal profile jika sedang di halaman edit profile
+        @if (!request()->routeIs('profile.edit'))
+            document.getElementById('openProfileModal').onclick = openProfileModal;
+        @else
+            document.getElementById('openProfileModal').onclick = function(e) { e.preventDefault(); };
+        @endif
         document.getElementById('modalProfileBg').onclick = function(e) {
             if (e.target === this) closeProfileModal();
         };

@@ -1,0 +1,327 @@
+
+
+.dashboard .overlap-group-wrapper {
+    background-color: #fff;
+    width: 100%;
+    max-width: 1440px;
+    height: 1024px;
+}
+
+.dashboard .overlap-group {
+    position: relative;
+    height: 1042px;
+    top: -18px;
+}
+
+.dashboard .gradient {
+    position: absolute;
+    width: 1440px;
+    height: 1024px;
+    top: 18px;
+    left: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(237, 28, 36, 0, 0.19) 25%,
+        rgba(237, 28, 36, 0, 0.19) 100%
+    );
+}
+
+.dashboard .header{
+    position: absolute;
+    width: 100%;
+    height: 102%;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border-radius: 28px;
+}
+
+.dashboard .content{
+    position: absolute;
+    width: 1196px;
+    height: 653px;
+    top: 259px;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: #fff;
+    border-radius: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.dashboard .logo-pertamina{
+    width: 222px;
+    height: 222px;
+    object-fit: cover;
+}
+
+.dashboard .navigation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 21px;
+    margin-top: 30px;
+}
+
+.dashboard .button{
+    width: 954px;
+    height: 110px;
+    border-radius: 38px;
+    background: linear-gradient(
+        0deg,
+        rgba(237, 28, 36, 0.3) 0%,
+        rgba(237, 28, 36, 1) 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Sansation-Regular", Helvetica;
+    font-weight: 400;
+    color: #fff;
+    font-size: 40px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.dashboard .button:hover{
+    transform: scale(1.05);
+}
+
+.dashboard .button:focus{
+    outline: 3px solid #fff;
+}
+
+.button.peminjaman, .button.progress {
+  background: linear-gradient(
+    0deg,
+    rgba(237, 28, 36, 0.3) 0%,
+    rgba(237, 28, 36, 1) 100%
+  );
+  border: none;
+  border-radius: 38px;
+  color: #fff;
+  padding: 16px 48px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+  box-shadow: 0 2px 8px rgba(237,28,36,0.08);
+  margin: 0 12px;
+  outline: none;
+  text-decoration: none;
+}
+.button.peminjaman:hover, .button.progress:hover {
+  box-shadow: 0 4px 16px rgba(237,28,36,0.18);
+  transform: translateY(-2px) scale(1.04);
+  background: linear-gradient(
+    0deg,
+    rgba(237, 28, 36, 0.5) 0%,
+    rgba(237, 28, 36, 1) 100%
+  );
+}
+
+.container-dashboard-utama {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  background: none;
+}
+.retangle-putih-dashboard {
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.08);
+  padding: 36px 32px 32px 32px;
+  max-width: 900px;
+  min-width: 350px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+.retangle-putih-dashboard:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15), 0 6px 20px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+}
+
+.dashboard-content {
+  margin-top: 0 !important;
+  display: flex !important;
+  flex: none !important;
+  justify-content: center !important;
+}
+.dashboard-retangle-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 94px !important;
+}
+.dashboard-retangle {
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.08);
+  padding: 36px 32px 32px 32px;
+  max-width: 900px;
+  min-width: 350px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.dashboard-retangle:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15), 0 6px 20px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+}
+
+.navigation {
+  margin-top: 30px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.nocaret, 
+.nocaret * {
+  caret-color: transparent !important;
+  user-select: none;
+}
+
+/* Styling khusus untuk halaman peminjaman */
+.peminjaman-page .navigation h2 {
+  color: #ed1c24;
+  font-family: 'Sansation', sans-serif;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 28px;
+  margin-top: 0;
+}
+
+.peminjaman-page .navigation p {
+  color: #666;
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.peminjaman-page .button.peminjaman {
+  width: 300px;
+  background: #fff;
+  height: 60px;
+  font-size: 18px;
+  margin-top: -250px;
+}
+
+.peminjaman-page .logo-pertamina {
+  width: 222px;
+  height: 180px;
+  object-fit: cover;
+  margin-bottom: 100px;
+}
+
+.peminjaman-page .dashboard-retangle {
+  padding: 48px 32px 32px 32px;
+  background: linear-gradient(to top, rgba(237, 28, 36, 0.75), rgba(237, 28, 36, 0.25));
+  min-height: 500px;
+  justify-content: center;
+}
+
+.peminjaman-page .navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.kotak1{
+  width: 300px;
+  height: 300px;
+  position: relative;
+  left: -200px;
+  top: -80px;
+  background-color: lightblue;
+  margin: 5px;
+  border-radius: 30px;
+}
+
+.gudang, .riwayat {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: fadeInBounce 0.8s ease-out, gentlePulse 3s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes fadeInBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.gudang:hover, .riwayat:hover {
+  transform: scale(1.08) translateY(-8px) rotate(3deg);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25), 0 0 25px rgba(237, 28, 36, 0.4);
+  border-color: #ed1c24;
+  filter: brightness(1.15) contrast(1.1);
+  animation: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gudang{
+  width: 300px;
+  height: 300px;
+  position: static;
+  left: -200px;
+  top: -80px;
+  border-radius: 30px;
+  border: 5px solid #000;
+}
+
+.riwayat{
+  width: 300px;
+  height: 300px;
+  position: static;
+  left: 200px;
+  bottom: 390px;
+  border-radius: 30px;
+  border: 5px solid #000;
+}
+
+.kotak2{
+  width: 300px;
+  height: 300px;
+  position: relative;
+  left: 200px;
+  bottom: 390px;
+  background-color: lightblue;
+  border-radius: 30px;
+  margin: 5px;
+}
+

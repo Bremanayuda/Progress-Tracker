@@ -4,18 +4,11 @@
 
 @section('content')
 <div class="wrapper">
-    <header class="header-2">
-    </header>
-        
-    <main class="main-content">
-
+    <main class="main-content" style="margin-top:32px; text-align:center;">
     </main>
-  </div>
-
+</div>
 <footer class="footer">
   <img src="/image/logo.png" class="footer-logo">
   <p class="footer-text">INFORMATION COMMUNICATION <br>AND TECHNOLOGY</p>
 </footer>
-
-
 @endsection 

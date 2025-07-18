@@ -14,19 +14,11 @@ class KoorSeeder extends Seeder
     public function run(): void
     {
         $koorData = [
-            [
-                'name'=>'koor',
-                'email'=>'admin@gmail.com',
-                'role'=>'koor',
-                'password'=>'password',
-
-            ]
-
-            
+            'name' => 'koor',
+            'email' => 'admin@gmail.com',
+            'role' => 'koor',
+            'password' => bcrypt('password'),
         ];
-
-        foreach($koorData as $key => $val){
-                User::create($val);
-            }
+        User::updateOrCreate(['email' => $koorData['email']], $koorData);
     }
 }

@@ -93,9 +93,13 @@ body, html {
     background: rgba(0,0,0,0.3);
     align-items: center;
     justify-content: center;
+    /* Animasi background fade */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 .modal-profile-bg.active {
     display: flex;
+    opacity: 1;
 }
 .modal-profile {
     background: #fff;
@@ -105,6 +109,14 @@ body, html {
     max-width: 95vw;
     box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     position: relative;
+    /* Animasi popup */
+    transform: scale(0.85);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(.4,1.6,.4,1), opacity 0.3s cubic-bezier(.4,1.6,.4,1);
+}
+.modal-profile-bg.active .modal-profile {
+    transform: scale(1);
+    opacity: 1;
 }
 .profile-overview-table {
     display: flex;
@@ -219,4 +231,70 @@ body, html {
 .footer-text {
   font-size: 16px;
   margin: 0;
+}
+
+.edit-profile-card {
+    border-radius: 28px;
+    box-shadow: 0 4px 32px rgba(237,28,36,0.10);
+    border: none;
+    padding: 32px 36px 28px 36px;
+    background: #fff !important;
+    margin-top: 32px;
+}
+
+/* Centering for Edit Profile Rectangle */
+.edit-profile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 100px);
+    margin-top: 100px;
+    margin-bottom: 32px;
+}
+@media (max-width: 600px) {
+    .edit-profile-card {
+        padding: 18px 8px 18px 8px;
+    }
+    .edit-profile-wrapper {
+        margin-top: 70px;
+        min-height: calc(100vh - 70px);
+    }
+}
+.save-profile-btn {
+    margin-top: 32px;
+    width: 100%;
+    padding: 12px;
+    background: #ed1c24;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    font-family: 'Sansation', sans-serif;
+    font-weight: bold;
+}
+.save-profile-btn:hover {
+    background: #c4141a;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(237, 28, 36, 0.4);
+}
+
+/* Hilangkan caret pada input readonly/non-input di edit profile */
+.form-control[readonly], .form-control[tabindex='-1'], input[readonly], input[tabindex='-1'] {
+    caret-color: transparent !important;
+    user-select: none;
+}
+
+/* Hilangkan caret pada elemen non-input */
+.nocaret, .nocaret * {
+  caret-color: transparent !important;
+  user-select: none;
+}
+
+/* Pastikan caret tetap muncul pada input, textarea, dan [contenteditable] */
+input, textarea, [contenteditable="true"] {
+  caret-color: auto;
+  user-select: auto;
 }
