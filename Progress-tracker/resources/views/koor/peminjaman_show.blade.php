@@ -7,14 +7,6 @@
         <div class="card-header">Detail Peminjaman</div>
         <div class="card-body">
             <div class="form-group mb-3">
-                <label>Nama Peminjam</label>
-                <div class="form-control" style="background:#f8f9fa;">{{ $peminjaman->user->name }}</div>
-            </div>
-            <div class="form-group mb-3">
-                <label>Role</label>
-                <div class="form-control" style="background:#f8f9fa;">{{ $peminjaman->user->role }}</div>
-            </div>
-            <div class="form-group mb-3">
                 <label>Barang</label>
                 <div class="form-control" style="background:#f8f9fa;">{{ $peminjaman->barang->nama_barang }}</div>
             </div>
@@ -25,10 +17,6 @@
             <div class="form-group mb-3">
                 <label>Alasan Peminjaman</label>
                 <div class="form-control" style="background:#f8f9fa;">{{ $peminjaman->alasan }}</div>
-            </div>
-            <div class="form-group mb-3">
-                <label>Status</label>
-                <div class="form-control" style="background:#f8f9fa;">{{ ucfirst($peminjaman->status) }}</div>
             </div>
             <div class="form-group mb-3">
                 <label>Deadline</label>
@@ -43,11 +31,13 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        <button type="submit" class="save-profile-btn" style="margin-top:10px;">Set Deadline</button>
-                    </form>
+                        <button type="submit" class="save-profile-btn" style="margin-top:0px;">Approve</button>
+                    </form> 
                 @endif
             </div>
-            <a href="{{ route('koor.peminjaman.index') }}" class="save-profile-btn" style="background:#888; margin-top:18px;">Kembali</a>
+            <center>
+            <a href="{{ route('koor.peminjaman.index') }}" class="btn-kembali-1" style=margin-top:20px;">Kembali</a>
+            </center>
         </div>
     </div>
 </div>

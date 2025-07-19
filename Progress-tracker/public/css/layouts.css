@@ -1,5 +1,6 @@
 body, html {
-    height: 100%;
+    height: auto;
+    overflow-y: auto; 
     margin: 0;
     padding: 0;
     font-family: 'Sansation', sans-serif;

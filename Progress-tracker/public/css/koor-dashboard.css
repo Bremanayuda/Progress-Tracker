@@ -325,3 +325,12 @@
   margin: 5px;
 }
 
+.label-box {
+  margin-top: 12px;
+  font-family: 'Sansation', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+}
