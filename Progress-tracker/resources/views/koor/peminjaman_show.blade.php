@@ -82,6 +82,16 @@
                 </div>
             @endif
             
+            @if($peminjaman->status == 'rejected')
+                <div class="form-group mb-3">
+                    <form method="POST" action="{{ route('koor.peminjaman.destroy', $peminjaman->id) }}" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="save-profile-btn" style="background: #ed1c24;" onclick="return confirm('Yakin ingin menghapus peminjaman yang ditolak ini?')">Hapus Peminjaman</button>
+                    </form>
+                </div>
+            @endif
+            
             <center>
             <a href="{{ route('koor.peminjaman.index') }}" class="btn-kembali-1" style="margin-top:20px;">Kembali</a>
             </center>

@@ -43,11 +43,11 @@ class BarangController extends Controller
     {
         $barang = Barang::findOrFail($id);
         
-        // Cek apakah barang sedang dipinjam
-        $peminjamanAktif = $barang->peminjamans()->where('status', '!=', 'returned')->exists();
+        // Cek apakah barang sedang dipinjam (pending atau approved)
+        $peminjamanAktif = $barang->peminjamans()->whereIn('status', ['pending', 'approved'])->exists();
         
         if ($peminjamanAktif) {
-            $jumlahPeminjaman = $barang->peminjamans()->where('status', '!=', 'returned')->count();
+            $jumlahPeminjaman = $barang->peminjamans()->whereIn('status', ['pending', 'approved'])->count();
             return redirect()->route('koor.barang.index')->with('error', "Barang tidak dapat dihapus karena sedang dipinjam oleh {$jumlahPeminjaman} peminjam!");
         }
         

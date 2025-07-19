@@ -50,6 +50,13 @@
                                     <button type="submit" class="btn-hapus-barang" style="padding:6px 14px; font-size:14px;">Hapus</button>
                                 </form>
                                 @endif
+                                @if($p->status === 'rejected')
+                                <form method="POST" action="{{ route('koor.peminjaman.destroy', $p->id) }}" onsubmit="return confirm('Hapus peminjaman yang ditolak ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-hapus-barang" style="padding:6px 14px; font-size:14px;">Hapus</button>
+                                </form>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

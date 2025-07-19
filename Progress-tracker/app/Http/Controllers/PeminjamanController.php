@@ -169,12 +169,12 @@ class PeminjamanController extends Controller
         return $pdf->download('peminjaman-' . $peminjaman->id . '.pdf');
     }
 
-    // Hapus peminjaman (hanya jika sudah dikembalikan)
+    // Hapus peminjaman (hanya jika sudah dikembalikan atau ditolak)
     public function destroy($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);
-        if ($peminjaman->status !== 'returned') {
-            return back()->with('error', 'Hanya peminjaman yang sudah dikembalikan yang dapat dihapus.');
+        if ($peminjaman->status !== 'returned' && $peminjaman->status !== 'rejected') {
+            return back()->with('error', 'Hanya peminjaman yang sudah dikembalikan atau ditolak yang dapat dihapus.');
         }
         $peminjaman->delete();
         return back()->with('success', 'Riwayat peminjaman berhasil dihapus.');
