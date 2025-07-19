@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tanggal_pinjam');
             $table->text('alasan');
             $table->date('deadline')->nullable(); // diisi koor
-            $table->enum('status', ['pending', 'approved', 'returned', 'late'])->default('pending');
+            $table->enum('status', ['pending', 'approved', 'rejected', 'returned', 'late'])->default('pending');
             $table->boolean('notifikasi_telat')->default(false); // notifikasi jika telat
             $table->timestamps();
             $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade');

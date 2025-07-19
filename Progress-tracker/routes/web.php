@@ -45,6 +45,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/koor/peminjaman', [PeminjamanController::class, 'index'])->name('koor.peminjaman.index');
     Route::get('/koor/peminjaman/{id}', [PeminjamanController::class, 'show'])->name('koor.peminjaman.show');
     Route::post('/koor/peminjaman/{id}/deadline', [PeminjamanController::class, 'setDeadline'])->name('koor.peminjaman.setDeadline');
+    Route::post('/koor/peminjaman/{id}/approve', [PeminjamanController::class, 'approve'])->name('koor.peminjaman.approve');
+    Route::post('/koor/peminjaman/{id}/reject', [PeminjamanController::class, 'reject'])->name('koor.peminjaman.reject');
+    Route::get('/koor/peminjaman/{id}/download-pdf', [PeminjamanController::class, 'downloadPDF'])->name('koor.peminjaman.downloadPDF');
     Route::get('/koor/peminjaman-telat', [PeminjamanController::class, 'notifikasiTelat'])->name('koor.peminjaman.telat');
     Route::delete('/koor/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('koor.peminjaman.destroy');
 });
@@ -53,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/general/peminjaman/create', [PeminjamanController::class, 'create'])->name('general.peminjaman.create');
     Route::post('/general/peminjaman', [PeminjamanController::class, 'store'])->name('general.peminjaman.store');
+    Route::get('/general/peminjaman/history', [PeminjamanController::class, 'history'])->name('general.peminjaman.history');
     Route::put('/general/peminjaman/{id}/return', [PeminjamanController::class, 'return'])->name('general.peminjaman.return');
 });
 

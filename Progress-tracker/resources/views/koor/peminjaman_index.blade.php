@@ -30,7 +30,17 @@
                             <td>{{ $p->jumlah_pinjam }}</td>
                             <td>{{ $p->tanggal_pinjam }}</td>
                             <td>{{ $p->deadline ?? '-' }}</td>
-                            <td>{{ ucfirst($p->status) }}</td>
+                            <td>
+                                @if($p->status == 'pending')
+                                    <span style="color: #e67e22; font-weight: 600;">Pending</span>
+                                @elseif($p->status == 'approved')
+                                    <span style="color: #0a7c1c; font-weight: 600;">Approved</span>
+                                @elseif($p->status == 'rejected')
+                                    <span style="color: #ed1c24; font-weight: 600;">Rejected</span>
+                                @elseif($p->status == 'returned')
+                                    <span style="color: #0a7c1c; font-weight: 600;">Returned</span>
+                                @endif
+                            </td>
                             <td style="display: flex; gap: 6px;">
                                 <a href="{{ route('koor.peminjaman.show', $p->id) }}" class="save-profile-btn" style="padding:6px 14px; font-size:14px;">Detail</a>
                                 @if($p->status === 'returned')

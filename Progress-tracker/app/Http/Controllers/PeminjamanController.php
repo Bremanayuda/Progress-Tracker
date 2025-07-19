@@ -23,6 +23,7 @@ class PeminjamanController extends Controller
         $request->validate([
             'barang_id' => 'required|exists:barangs,id',
             'tanggal_pinjam' => 'required|date',
+            'tanggal_kembali' => 'required|date|after_or_equal:tanggal_pinjam',
             'alasan' => 'required|string',
             'jumlah_pinjam' => 'required|integer|min:1',
         ]);
@@ -36,6 +37,7 @@ class PeminjamanController extends Controller
             'user_id' => Auth::id(),
             'jumlah_pinjam' => $request->jumlah_pinjam,
             'tanggal_pinjam' => $request->tanggal_pinjam,
+            'deadline' => $request->tanggal_kembali,
             'alasan' => $request->alasan,
             'status' => 'pending',
         ]);
@@ -56,7 +58,46 @@ class PeminjamanController extends Controller
         return view('koor.peminjaman_show', compact('peminjaman'));
     }
 
-    // Set deadline pinjaman (Koor)
+    // Approve peminjaman (Koor)
+    public function approve($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+        $barang = $peminjaman->barang;
+        
+        if ($peminjaman->status !== 'pending') {
+            return back()->with('error', 'Status peminjaman tidak valid untuk approval.');
+        }
+        
+        if ($peminjaman->jumlah_pinjam > $barang->jumlah) {
+            return back()->with('error', 'Stok barang tidak mencukupi untuk approval.');
+        }
+        
+        // Kurangi stok barang saat approval
+        $barang->jumlah -= $peminjaman->jumlah_pinjam;
+        $barang->save();
+        
+        $peminjaman->status = 'approved';
+        $peminjaman->save();
+        
+        return redirect()->route('koor.peminjaman.index')->with('success', 'Peminjaman berhasil disetujui!');
+    }
+
+    // Reject peminjaman (Koor)
+    public function reject($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+        
+        if ($peminjaman->status !== 'pending') {
+            return back()->with('error', 'Status peminjaman tidak valid untuk rejection.');
+        }
+        
+        $peminjaman->status = 'rejected';
+        $peminjaman->save();
+        
+        return redirect()->route('koor.peminjaman.index')->with('success', 'Peminjaman berhasil ditolak!');
+    }
+
+    // Set deadline pinjaman (Koor) - untuk backward compatibility
     public function setDeadline(Request $request, $id)
     {
         $request->validate([
@@ -93,6 +134,16 @@ class PeminjamanController extends Controller
         return view('ict.peminjaman_list', compact('peminjamans'));
     }
 
+    // Riwayat peminjaman (General)
+    public function history()
+    {
+        $peminjamans = Peminjaman::where('user_id', Auth::id())
+            ->with(['barang'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('general.peminjaman_history', compact('peminjamans'));
+    }
+
     // Pengembalian barang (General)
     public function return(Request $request, $id)
     {
@@ -106,6 +157,16 @@ class PeminjamanController extends Controller
         $peminjaman->status = 'returned';
         $peminjaman->save();
         return redirect()->route('dashboard')->with('success', 'Barang berhasil dikembalikan!');
+    }
+
+    // Download PDF peminjaman (Koor)
+    public function downloadPDF($id)
+    {
+        $peminjaman = Peminjaman::with(['user', 'barang'])->findOrFail($id);
+        
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('koor.peminjaman_pdf', compact('peminjaman'));
+        
+        return $pdf->download('peminjaman-' . $peminjaman->id . '.pdf');
     }
 
     // Hapus peminjaman (hanya jika sudah dikembalikan)
