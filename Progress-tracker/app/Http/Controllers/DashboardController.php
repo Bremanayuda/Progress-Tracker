@@ -15,17 +15,15 @@ class DashboardController extends Controller
         
         switch ($user->role) {
             case 'koor':
-                // Notifikasi: jumlah peminjaman pending dan telat
                 $pendingCount = \App\Models\Peminjaman::where('status', 'pending')->count();
                 $lateCount = \App\Models\Peminjaman::where('deadline', '<', now()->toDateString())
                     ->where('status', '!=', 'returned')
                     ->count();
                 return view('koor.dashboard', compact('pendingCount', 'lateCount'));
             case 'ICT':
-                $tasks = Task::where('pic', $user->name)->orderByDesc('created_at')->get();
+                $tasks = Task::whereRaw('JSON_CONTAINS(pic, ?)', [json_encode([Auth::user()->name])])->orderByDesc('created_at')->get();
                 return view('ict.dashboard', compact('tasks'));
             default:
-                // Ambil peminjaman milik user general yang belum dikembalikan
                 $peminjaman = Peminjaman::where('user_id', $user->id)
                     ->where('status', '!=', 'returned')
                     ->latest()

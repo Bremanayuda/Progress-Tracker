@@ -28,14 +28,13 @@ body {
 }
 .judul-barang {
   font-size: 2.2rem;
-  color: #ed1c24;
+  color: #00AEEF;
   font-family: 'Sansation', Helvetica, Arial, sans-serif;
   font-weight: 700;
   text-align: center;
   margin-bottom: 32px;
   margin-top: 0;
 }
-/* Modal styles */
 .modal-barang-bg {
   position: fixed;
   top: 0;
@@ -79,10 +78,10 @@ body {
   transition: color 0.2s ease;
 }
 .close-btn:hover {
-  color: #ed1c24;
+  color: #00AEEF;
 }
 .modal-barang h3 {
-  color: #ed1c24;
+  color: #00AEEF;
   margin-bottom: 16px;
   font-size: 1.5rem;
   font-weight: 600;
@@ -104,7 +103,7 @@ body {
   font-weight: 500;
 }
 .rect-barang {
-  background: #ed1c24;
+  background: #00AEEF;
   border-radius: 32px;
   padding: 36px 32px 28px 32px;
   margin: 0 auto 32px auto;
@@ -152,7 +151,7 @@ body {
 }
 .btn-tambah-barang {
   display: inline-block;
-  background: #ed1c24;
+  background: #00AEEF;
   color: #fff;
   border: none;
   border-radius: 24px;
@@ -166,7 +165,7 @@ body {
   text-decoration: none;
 }
 .btn-tambah-barang:hover {
-  background: #c4141a;
+  background: #00AEEF;
 }
 .btn-detail-barang {
   background: none;
@@ -238,7 +237,7 @@ body {
 .btn-hapus-barang:hover,
 .btn-hapus-barang:focus {
   background: #fff;
-  color: #dc3545;
+  color: #00AEEF;
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
@@ -261,7 +260,6 @@ body {
   box-shadow: none;
 }
 
-/* Styling untuk form agar tidak mempengaruhi layout */
 .btn-group form {
   margin: 0;
   padding: 0;

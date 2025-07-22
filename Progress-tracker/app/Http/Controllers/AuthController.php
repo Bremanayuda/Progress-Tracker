@@ -17,8 +17,6 @@ class AuthController extends Controller
             'role' => 'required|string',
             'password' => 'required|string|min:6',
         ]);
-
-        // Mapping role values to database values
         $roleMapping = [
             'role1' => 'ICT',
             'role2' => 'SCM', 

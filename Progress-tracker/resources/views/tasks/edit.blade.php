@@ -3,11 +3,10 @@
 @section('title', 'Edit Pekerjaan')
 
 @section('content') 
-{{-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"> --}}
 <link rel="stylesheet" href="/css/edit-progress.css" />
 <div class="edit-task-wrapper">
     <div class="card edit-task-card">
-        <div class="card-header">Ubah Pekerjaan</div>
+        <div class="card-header">Pekerjaan</div>
         @if ($errors->any())
             <div class="invalid-feedback">
                 <ul class="list-disc">
@@ -42,8 +41,8 @@
                     <input type="number" name="progress" min="0" max="100" value="{{ old('progress', $task->progress) }}" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label>Lampiran (opsional)</label>
-                    <input type="file" name="file" class="form-control">
+                    <label>Lampiran (link, opsional)</label>
+                    <input type="url" name="file_link" class="form-control" placeholder="Masukkan link lampiran (opsional)" value="{{ old('file_link', $task->file_link ?? '') }}">
                 </div>
             @else
                 <div class="form-group">
@@ -66,21 +65,44 @@
                 @else
                     <div class="form-group">
                         <label>PIC (Penanggung Jawab)</label>
-                        <select name="pic" class="form-control" required>
-                            <option value="">-- Pilih PIC --</option>
+                        @php
+                            $selectedPics = old('pic', $task->pic);
+                            if (is_string($selectedPics)) {
+                                $selectedPics = json_decode($selectedPics, true);
+                            }
+                            if (!is_array($selectedPics)) {
+                                $selectedPics = [$selectedPics];
+                            }
+                        @endphp
+                        <select name="pic[]" multiple class="form-control" required id="pic-select">
                             @foreach($ictUsers as $user)
-                                <option value="{{ $user->name }}" {{ old('pic', $task->pic) == $user->name ? 'selected' : '' }}>{{ $user->name }}</option>
+                                <option value="{{ $user->name }}" {{ in_array($user->name, $selectedPics) ? 'selected' : '' }}>{{ $user->name }}</option>
                             @endforeach
+                            <option value="other" {{ in_array('other', $selectedPics) ? 'selected' : '' }}>Other</option>
                         </select>
+                        <input type="text" name="pic_other" id="pic-other-input" class="form-control mt-2" placeholder="Isi PIC lain (pisahkan dengan koma)" style="display:none;" value="{{ old('pic_other') }}">
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const select = document.getElementById('pic-select');
+                                const otherInput = document.getElementById('pic-other-input');
+                                function toggleOtherInput() {
+                                    const selected = Array.from(select.selectedOptions).map(opt => opt.value);
+                                    if (selected.includes('other')) {
+                                        otherInput.style.display = '';
+                                    } else {
+                                        otherInput.style.display = 'none';
+                                        otherInput.value = '';
+                                    }
+                                }
+                                select.addEventListener('change', toggleOtherInput);
+                                toggleOtherInput();
+                            });
+                        </script>
                     </div>
                 @endif
                 <div class="form-group">
                     <label>Progress (%)</label>
                     <input type="number" name="progress" min="0" max="100" value="{{ old('progress', $task->progress) }}" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Lampiran (opsional)</label>
-                    <input type="file" name="file" class="form-control">
                 </div>
             @endif
             <button type="submit" class="save-task-btn">Update</button>

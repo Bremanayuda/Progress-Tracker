@@ -10,14 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class PeminjamanController extends Controller
 {
-    // Form peminjaman barang (General)
+    
     public function create()
     {
         $barangs = Barang::all();
         return view('general.peminjaman_create', compact('barangs'));
     }
 
-    // Simpan data peminjaman (General)
     public function store(Request $request)
     {
         $request->validate([
@@ -31,7 +30,7 @@ class PeminjamanController extends Controller
         if ($request->jumlah_pinjam > $barang->jumlah) {
             return back()->withErrors(['jumlah_pinjam' => 'Jumlah pinjam melebihi stok barang!'])->withInput();
         }
-        // Tidak mengurangi stok barang di sini
+        
         Peminjaman::create([
             'barang_id' => $request->barang_id,
             'user_id' => Auth::id(),
@@ -44,21 +43,20 @@ class PeminjamanController extends Controller
         return redirect()->route('dashboard')->with('success', 'Pengajuan peminjaman berhasil!');
     }
 
-    // Daftar peminjam (Koor) - tampilkan semua status
+    
     public function index()
     {
         $peminjamans = Peminjaman::with(['user', 'barang'])->get();
         return view('koor.peminjaman_index', compact('peminjamans'));
     }
 
-    // Detail pinjaman (Koor)
+    
     public function show($id)
     {
         $peminjaman = Peminjaman::with(['user', 'barang'])->findOrFail($id);
         return view('koor.peminjaman_show', compact('peminjaman'));
     }
 
-    // Approve peminjaman (Koor)
     public function approve($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);
@@ -72,7 +70,6 @@ class PeminjamanController extends Controller
             return back()->with('error', 'Stok barang tidak mencukupi untuk approval.');
         }
         
-        // Kurangi stok barang saat approval
         $barang->jumlah -= $peminjaman->jumlah_pinjam;
         $barang->save();
         
@@ -82,7 +79,6 @@ class PeminjamanController extends Controller
         return redirect()->route('koor.peminjaman.index')->with('success', 'Peminjaman berhasil disetujui!');
     }
 
-    // Reject peminjaman (Koor)
     public function reject($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);
@@ -97,7 +93,6 @@ class PeminjamanController extends Controller
         return redirect()->route('koor.peminjaman.index')->with('success', 'Peminjaman berhasil ditolak!');
     }
 
-    // Set deadline pinjaman (Koor) - untuk backward compatibility
     public function setDeadline(Request $request, $id)
     {
         $request->validate([
@@ -105,7 +100,7 @@ class PeminjamanController extends Controller
         ]);
         $peminjaman = Peminjaman::findOrFail($id);
         $barang = $peminjaman->barang;
-        // Kurangi stok barang saat approval jika belum pernah di-approve
+        
         if ($peminjaman->status === 'pending' && $peminjaman->jumlah_pinjam <= $barang->jumlah) {
             $barang->jumlah -= $peminjaman->jumlah_pinjam;
             $barang->save();
@@ -116,7 +111,6 @@ class PeminjamanController extends Controller
         return redirect()->route('koor.peminjaman.show', $id)->with('success', 'Deadline berhasil ditetapkan!');
     }
 
-    // Notifikasi pinjaman telat (Koor)
     public function notifikasiTelat()
     {
         $today = now()->toDateString();
@@ -127,14 +121,12 @@ class PeminjamanController extends Controller
         return view('koor.peminjaman_telat', compact('telat'));
     }
 
-    // Daftar peminjam (ICT)
     public function listICT()
     {
         $peminjamans = Peminjaman::with(['user', 'barang'])->get();
         return view('ict.peminjaman_list', compact('peminjamans'));
     }
 
-    // Riwayat peminjaman (General)
     public function history()
     {
         $peminjamans = Peminjaman::where('user_id', Auth::id())
@@ -144,7 +136,6 @@ class PeminjamanController extends Controller
         return view('general.peminjaman_history', compact('peminjamans'));
     }
 
-    // Pengembalian barang (General)
     public function return(Request $request, $id)
     {
         $peminjaman = Peminjaman::findOrFail($id);
@@ -159,7 +150,6 @@ class PeminjamanController extends Controller
         return redirect()->route('dashboard')->with('success', 'Barang berhasil dikembalikan!');
     }
 
-    // Download PDF peminjaman (Koor)
     public function downloadPDF($id)
     {
         $peminjaman = Peminjaman::with(['user', 'barang'])->findOrFail($id);
@@ -169,7 +159,6 @@ class PeminjamanController extends Controller
         return $pdf->download('peminjaman-' . $peminjaman->id . '.pdf');
     }
 
-    // Hapus peminjaman (hanya jika sudah dikembalikan atau ditolak)
     public function destroy($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);

@@ -4,7 +4,7 @@
 
 @section('content')
 <link rel="stylesheet" href="/css/table-style.css" />
-<div class="form-container">
+<div class="form-container animate__animated animate__slideInUp" style="position: relative; z-index: 1;">
     <div class="form-header">
         <span class="text-5xl"></span>
         <h2>Task</h2>
@@ -43,12 +43,30 @@
                 @else
                     <div class="flex-1 min-w-[200px]">
                         <label class="block text-blue-700 font-bold mb-2 uppercase tracking-wide">PIC (Penanggung Jawab)</label>
-                        <select name="pic" class="w-full px-5 py-3 border-2 border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-blue-400 transition duration-200 font-semibold text-lg shadow-sm" required>
-                            <option value="">-- Pilih PIC --</option>
+                        <select name="pic[]" multiple class="w-full px-5 py-3 border-2 border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-blue-400 transition duration-200 font-semibold text-lg shadow-sm" required id="pic-select">
                             @foreach($ictUsers as $user)
-                                <option value="{{ $user->name }}" {{ old('pic') == $user->name ? 'selected' : '' }}>{{ $user->name }}</option>
+                                <option value="{{ $user->name }}" {{ (collect(old('pic'))->contains($user->name)) ? 'selected' : '' }}>{{ $user->name }}</option>
                             @endforeach
+                            <option value="other" {{ (collect(old('pic'))->contains('other')) ? 'selected' : '' }}>Other</option>
                         </select>
+                        <input type="text" name="pic_other" id="pic-other-input" class="w-full px-5 py-3 border-2 border-blue-200 rounded-xl mt-2" placeholder="Isi PIC lain (pisahkan dengan koma)" style="display:none;" value="{{ old('pic_other') }}">
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const select = document.getElementById('pic-select');
+                                const otherInput = document.getElementById('pic-other-input');
+                                function toggleOtherInput() {
+                                    const selected = Array.from(select.selectedOptions).map(opt => opt.value);
+                                    if (selected.includes('other')) {
+                                        otherInput.style.display = '';
+                                    } else {
+                                        otherInput.style.display = 'none';
+                                        otherInput.value = '';
+                                    }
+                                }
+                                select.addEventListener('change', toggleOtherInput);
+                                toggleOtherInput();
+                            });
+                        </script>
                     </div>
                 @endif
             </div>

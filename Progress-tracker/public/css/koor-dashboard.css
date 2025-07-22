@@ -96,7 +96,7 @@
 .button.peminjaman, .button.progress {
   background: linear-gradient(
     0deg,
-    rgba(0, 174, 239, 0.3) 0%,   /* #00AEEF dengan opacity 0.3 */
+    rgba(0, 174, 239, 0.3) 0%,   
     rgba(0, 90, 169, 1) 100% 
   );
   border: none;
@@ -117,7 +117,7 @@
   transform: translateY(-2px) scale(1.04);
   background: linear-gradient(
     0deg,
-  rgba(67, 176, 42, 0.3) 0%,  /* hijau dengan opacity 0.3 */
+  rgba(67, 176, 42, 0.3) 0%, 
   rgba(67, 176, 42, 1) 100%
   );
 }
@@ -192,7 +192,7 @@
   user-select: none;
 }
 
-/* Styling khusus untuk halaman peminjaman */
+
 .peminjaman-page .navigation h2 {
   color: #00AEEF; 
   font-family: 'Sansation', sans-serif;

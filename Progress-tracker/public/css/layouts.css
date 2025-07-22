@@ -7,7 +7,7 @@ body, html {
 }
 .dashboard-bg {
     min-height: 100vh;
-    background: #005AA9;
+    background: transparent;
     display: flex;
     flex-direction: column;
 }
@@ -94,7 +94,7 @@ body, html {
     background: rgba(0,0,0,0.3);
     align-items: center;
     justify-content: center;
-    /* Animasi background fade */
+    
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
 }
@@ -110,7 +110,7 @@ body, html {
     max-width: 95vw;
     box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     position: relative;
-    /* Animasi popup */
+    
     transform: scale(0.85);
     opacity: 0;
     transition: transform 0.3s cubic-bezier(.4,1.6,.4,1), opacity 0.3s cubic-bezier(.4,1.6,.4,1);
@@ -243,7 +243,7 @@ body, html {
     margin-top: 32px;
 }
 
-/* Centering for Edit Profile Rectangle */
+
 .edit-profile-wrapper {
     display: flex;
     justify-content: center;
@@ -282,25 +282,20 @@ body, html {
     box-shadow: 0 4px 15px rgba(237, 28, 36, 0.4);
 }
 
-/* Hilangkan caret pada input readonly/non-input di edit profile */
+
 .form-control[readonly], .form-control[tabindex='-1'], input[readonly], input[tabindex='-1'] {
     caret-color: transparent !important;
     user-select: none;
 }
 
-/* Hilangkan caret pada elemen non-input */
+
 .nocaret, .nocaret * {
   caret-color: transparent !important;
   user-select: none;
 }
 
-/* Pastikan caret tetap muncul pada input, textarea, dan [contenteditable] */
+
 input, textarea, [contenteditable="true"] {
   caret-color: auto;
   user-select: auto;
-}
-
-.dashboard-bg.koor-background {
-    background: url('/image/background_pertamina.jpg') no-repeat center center fixed;
-    background-size: cover;
 }

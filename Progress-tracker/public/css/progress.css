@@ -1,6 +1,6 @@
 body {
     font-family: 'Sansation', sans-serif;
-    background-color: #f9fafb;
+    
 }
 
 .table-wrapper{
@@ -44,7 +44,6 @@ body {
   color: #000000;
 }
 
-/* Progress bar wrapper */
 .task-progress-bar {
     display: block;
     width: 100%;
@@ -56,7 +55,6 @@ body {
     margin-bottom: 0.25rem;
 }
 
-/* Inner bar with dynamic color */
 .task-progress-inner {
     display: block;
     height: 100%;
@@ -64,14 +62,12 @@ body {
     transition: width 0.4s ease;
 }
 
-/* Value text */
 .task-progress-value {
     font-size: 0.875rem;
     font-weight: bold;
     color: #374151;
 }
 
-/* Progress color classes */
 .progress-green {
     background: linear-gradient(90deg, #4ade80, #22c55e);
 }
@@ -84,13 +80,13 @@ body {
     background: linear-gradient(90deg, #fca5a5, #f87171);
 } 
 
-/* Row hover effect */
+
 tr:hover {
     background-color: #f0f9ff;
     transition: background-color 0.3s ease;
 }
 
-/* Responsive tweaks */
+
 @media (max-width: 768px) {
     .task-progress-bar {
         height: 10px;
@@ -173,15 +169,7 @@ tr:hover {
   transform: scale(1.05);
 }
 .btn-mini:not(:last-child) {
-  margin-right: 0;
-}
-
-.aksi-btn-group {
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
-  align-items: center;
-  justify-content: center;
+  margin-right: 10px;
 }
 
 .tambah-progress {
@@ -210,31 +198,4 @@ tr:hover {
   display: flex;
   justify-content: center;
   gap: 16px;
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(100vw);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-.slide-page {
-  animation: slideInRight 0.7s cubic-bezier(0.4,0.8,0.2,1) both;
-}
-
-.slide-title {
-  animation: slideInRight 0.7s cubic-bezier(0.4,0.8,0.2,1) both;
-  animation-delay: 0.1s;
-}
-.slide-table {
-  animation: slideInRight 0.7s cubic-bezier(0.4,0.8,0.2,1) both;
-  animation-delay: 0.4s;
-}
-.slide-btns {
-  animation: slideInRight 0.7s cubic-bezier(0.4,0.8,0.2,1) both;
-  animation-delay: 0.7s;
 }

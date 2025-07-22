@@ -16,11 +16,11 @@
       </a>
       <p class="label-box">Daftar Barang</p>
     </div>
-    <div class="kotak2"> 
+    <div class="kotak2">
       <a href="{{ route('koor.peminjaman.index') }}">
         <img class="riwayat" src="/image/riwayat.jpg" alt="Riwayat Peminjaman">
       </a>
-       <p class="label-box">Riwayat Peminjaman</p> 
+       <p class="label-box">Daftar Peminjaman</p> 
     </div>
     <div class="navigation">
       <a href="{{ route('dashboard') }}" class="button peminjaman" style="color: 	#ffffff">

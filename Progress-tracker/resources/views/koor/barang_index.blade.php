@@ -7,7 +7,7 @@
     <div style="position: fixed; top: 20px; right: 20px; background: #28a745; color: white; padding: 15px 20px; border-radius: 8px; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
         {{ session('success') }} 
     </div>
-@endif
+@endif 
 
 @if(session('error'))
     <div style="position: fixed; top: 20px; right: 20px; background: #dc3545; color: white; padding: 15px 20px; border-radius: 8px; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
@@ -36,16 +36,14 @@
                 </span>
                 <span class="col-status">
                     @php
-                        $peminjamanAktif = $barang->peminjamans()->whereIn('status', ['pending', 'approved'])->count();
-                        $totalDipinjam = $barang->peminjamans()->whereIn('status', ['pending', 'approved'])->sum('jumlah_pinjam');
-                        $jumlahTersedia = $barang->jumlah - $totalDipinjam;
+                        $peminjamanPending = $barang->peminjamans()->where('status', 'pending')->sum('jumlah_pinjam');
+                        $peminjamanApproved = $barang->peminjamans()->where('status', 'approved')->sum('jumlah_pinjam');
+                        $totalDipinjam = $peminjamanPending + $peminjamanApproved;
                     @endphp
-                    @if($peminjamanAktif > 0)
-                        @if($jumlahTersedia > 0)
-                            <span style="background:#ffc107; color:#000; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:bold;">DIPINJAM ({{ $totalDipinjam }})</span>
-                        @else
-                            <span style="background:#dc3545; color:#fff; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:bold;">HABIS</span>
-                        @endif
+                    @if($peminjamanApproved > 0)
+                        <span style="background:#ffc107; color:#000; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:bold;">DIPINJAM ({{ $peminjamanApproved }})</span>
+                    @elseif($peminjamanPending > 0)
+                        <span style="background:#17a2b8; color:#fff; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:bold;">MASIH TERSEDIA</span>
                     @else
                         <span style="background:#28a745; color:#fff; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:bold;">TIDAK DIPINJAM</span>
                     @endif
@@ -76,7 +74,7 @@
                 </span>
             </div>
             @empty
-            <div class="barang-row" style="text-align:center; color:#888;">
+            <div class="barang-row" style="text-align:center; color:#ffffff;">
                 <span style="width:100%">Belum ada barang.</span>
             </div>
             @endforelse
@@ -87,17 +85,16 @@
         </div>
     </div>
 </div>
-<!-- Modal Detail Barang -->
+
 <div class="modal-barang-bg" id="modalBarangBg">
     <div class="modal-barang">
         <button class="close-btn" onclick="closeModalBarang()">&times;</button>
         <h3 id="modalBarangNama"></h3>
         <div class="modal-label">Deskripsi:</div>
         <div id="modalBarangDeskripsi" class="modal-content"></div>
-        <div class="modal-info"><b>Jumlah Total:</b> <span id="modalBarangJumlah"></span></div>
+        <div class="modal-info"><b>Jumlah Tersedia:</b> <span id="modalBarangJumlah"></span></div>
         <div class="modal-info"><b>Jumlah Dipinjam:</b> <span id="modalBarangTotalDipinjam"></span></div>
-        <div class="modal-info"><b>Jumlah Tersedia:</b> <span id="modalBarangTersedia"></span></div>
-        <div class="modal-info"><b>Peminjaman Aktif:</b> <span id="modalBarangPeminjamanAktif"></span></div>
+        <div class="modal-info"><b>Peminjam:</b> <span id="modalBarangPeminjamanAktif"></span></div>
     </div>
 </div>
 <script>
@@ -114,7 +111,7 @@ document.querySelectorAll('.btn-detail-barang').forEach(function(btn) {
         document.getElementById('modalBarangDeskripsi').textContent = btn.getAttribute('data-deskripsi');
         document.getElementById('modalBarangJumlah').textContent = btn.getAttribute('data-jumlah');
         document.getElementById('modalBarangTotalDipinjam').textContent = btn.getAttribute('data-total-dipinjam');
-        document.getElementById('modalBarangTersedia').textContent = jumlahTersedia;
+
         document.getElementById('modalBarangPeminjamanAktif').textContent = btn.getAttribute('data-peminjaman-aktif');
         document.getElementById('modalBarangBg').classList.add('active');
     };
@@ -126,7 +123,6 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModalBarang();
 });
 
-// Auto hide notifications after 3 seconds
 setTimeout(function() {
     var notifications = document.querySelectorAll('[style*="position: fixed"]');
     notifications.forEach(function(notification) {

@@ -1,10 +1,10 @@
-/* peminjaman.css - styling khusus form peminjaman barang */
+
 .edit-profile-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-  margin-top: 30px;
+  margin-top: 30px; 
 }
 .card.edit-profile-card {
   background: #fff;
@@ -22,7 +22,7 @@
   font-family: 'Sansation', sans-serif;
   font-weight: bold;
   margin-bottom: 18px;
-  color: #ed1c24;
+  color: #00AEEF;
   text-align: center;
 }
 .card-body {
@@ -45,13 +45,13 @@
   transition: border-color 0.2s;
 }
 .form-control:focus {
-  border-color: #ed1c24;
+  border-color: #00AEEF;
   outline: none;
 }
 .save-profile-btn {
   width: 100%;
   padding: 12px;
-  background: #ed1c24;
+  background: #00AEEF;
   color: #fff;
   font-size: 17px;
   border: none;
@@ -61,16 +61,15 @@
   transition: background 0.2s, transform 0.2s;
 }
 .save-profile-btn:hover {
-  background: #c4141a;
+  background: #00AEEF;
   transform: scale(1.03);
 }
 .invalid-feedback {
-  color: #ed1c24;
+  color: #00AEEF;
   font-size: 13px;
   margin-top: 2px;
 } 
 
-/* Tambahan styling untuk tabel daftar peminjaman koor */
 div.card-body table th, div.card-body table td {
     text-align: center;
     vertical-align: middle;
@@ -97,7 +96,7 @@ div.card-header {
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 1px;
-    background: #ed1c24;
+    background: #00AEEF;
     color: #fff;
     border-radius: 10px 10px 0 0;
     padding: 16px 20px;
@@ -106,7 +105,7 @@ div.card-header {
 .btn-hapus-barang{
   width: 100%;
   padding: 12px;
-  background: #ed1c24;
+  background: #00AEEF;
   color: #fff;
   font-size: 17px;
   border: none;
@@ -117,13 +116,13 @@ div.card-header {
 }
 
 .btn-hapus-barang:hover {
-  background: #c4141a;
+  background: #00AEEF;
   transform: scale(1.03);
 }
 
 .btn-kembali-2 {
   display: inline-block;
-  background: #ed1c24;
+  background: #00AEEF;
   color: #fff;
   border: none;
   border-radius: 24px;
@@ -137,13 +136,13 @@ div.card-header {
   text-decoration: none;
 }
 .btn-kembali-2:hover {
-  background: #c4141a;
+  background: #00AEEF;
 }
 
 
 .btn-kembali-1 {
   display: inline-block;
-  background: #ed1c24;
+  background: #00AEEF;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -157,5 +156,5 @@ div.card-header {
   text-decoration: none;
 }
 .btn-kembali-1:hover {
-  background: #c4141a;
-}
+  background: #00AEEF;
+} 

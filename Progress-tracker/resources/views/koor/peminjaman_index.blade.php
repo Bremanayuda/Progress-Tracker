@@ -5,7 +5,7 @@
 <div class="edit-profile-wrapper">
     <div class="card edit-profile-card" style="width: 100%; max-width: 900px;">
         <div class="card-header">Daftar Peminjaman Barang</div>
-        <div class="card-body">
+        <div class="card-body"> 
 
             <div style="overflow-x:auto;">
                 <table class="table table-striped" style="width:100%; min-width:700px;">

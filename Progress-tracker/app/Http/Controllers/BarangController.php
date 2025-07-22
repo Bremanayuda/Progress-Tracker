@@ -8,20 +8,17 @@ use Illuminate\Support\Facades\Auth;
 
 class BarangController extends Controller
 {
-    // Tampilkan daftar barang
     public function index()
     {
         $barangs = Barang::all();
         return view('koor.barang_index', compact('barangs'));
     }
 
-    // Form input barang
     public function create()
     {
         return view('koor.barang_create');
     }
 
-    // Simpan barang baru
     public function store(Request $request)
     {
         $request->validate([
@@ -38,12 +35,10 @@ class BarangController extends Controller
         return redirect()->route('koor.barang.index')->with('success', 'Barang berhasil ditambahkan!');
     }
 
-    // Hapus barang
     public function destroy($id)
     {
         $barang = Barang::findOrFail($id);
         
-        // Cek apakah barang sedang dipinjam (pending atau approved)
         $peminjamanAktif = $barang->peminjamans()->whereIn('status', ['pending', 'approved'])->exists();
         
         if ($peminjamanAktif) {

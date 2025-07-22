@@ -32,7 +32,6 @@ Route::put('/profile/update', [App\Http\Controllers\AuthController::class, 'upda
 Route::get('/profile', [App\Http\Controllers\AuthController::class, 'showProfile'])->name('profile.show')->middleware('auth');
 Route::get('/profile/edit', [App\Http\Controllers\AuthController::class, 'editProfile'])->name('profile.edit')->middleware('auth');
 
-// Route Barang (Koor)
 Route::middleware(['auth'])->group(function () {
     Route::get('/koor/barang', [BarangController::class, 'index'])->name('koor.barang.index');
     Route::get('/koor/barang/create', [BarangController::class, 'create'])->name('koor.barang.create');
@@ -53,7 +52,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/koor/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('koor.peminjaman.destroy');
 });
 
-// Route Peminjaman (General)
 Route::middleware(['auth'])->group(function () {
     Route::get('/general/peminjaman/create', [PeminjamanController::class, 'create'])->name('general.peminjaman.create');
     Route::post('/general/peminjaman', [PeminjamanController::class, 'store'])->name('general.peminjaman.store');
@@ -61,13 +59,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/general/peminjaman/{id}/return', [PeminjamanController::class, 'return'])->name('general.peminjaman.return');
 });
 
-// Route List Peminjaman (ICT)
 Route::middleware(['auth'])->group(function () {
     Route::get('/ict/peminjaman', [PeminjamanController::class, 'listICT'])->name('ict.peminjaman.list');
     Route::get('/ict/progress', [DashboardController::class, 'progressICT'])->name('ict.progress');
 });
 
-// Route Tasks (Koor & ICT)
 Route::middleware(['auth'])->group(function () {
     Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
@@ -76,7 +72,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     
-    // Route untuk progress tracking (koor)
     Route::get('/koor/progress', [TaskController::class, 'progressKoor'])->name('koor.progress');
     Route::get('/tasks/{task}/pdf-progress', [TaskController::class, 'pdfProgress'])->name('tasks.pdf_progress');
     Route::get('/tasks/{task}/download-pdf-progress', [TaskController::class, 'downloadPdfProgress'])->name('tasks.download_pdf_progress');

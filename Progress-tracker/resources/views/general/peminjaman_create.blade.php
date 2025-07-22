@@ -2,6 +2,7 @@
 
 @section('content')
 <link rel="stylesheet" href="/css/peminjaman.css">
+<div class="fixed inset-0 -z-10 w-full h-full" style="background: url('/image/2f62a9e4e4228410b9e75c7048295b5b.jpg') center center / cover no-repeat;"></div>
 <div class="edit-profile-wrapper">
     <div class="card edit-profile-card" style="width: 100%; max-width: 480px;">
         <div class="card-header">Form Peminjaman Barang</div>

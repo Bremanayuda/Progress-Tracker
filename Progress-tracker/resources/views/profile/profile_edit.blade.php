@@ -1,8 +1,10 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Edit Profil')
+
 @section('content')
-<div class="edit-profile-wrapper">
-    <div class="card edit-profile-card" style="width: 100%; max-width: 480px;">
+ <div class="edit-profile-wrapper">
+    <div class="card edit-profile-card animate__animated animate__fadeIn" style="width: 100%; max-width: 480px;">
                 <div class="card-header">Edit Profile</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">

@@ -17,7 +17,7 @@
         }
 
         .container {
-            padding: 20px 0 100px; /* Sisakan ruang untuk footer di bawah */
+            padding: 20px 0 100px; 
         }
 
         .header {

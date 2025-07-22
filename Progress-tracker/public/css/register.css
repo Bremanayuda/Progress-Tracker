@@ -18,7 +18,6 @@ html, body {
   overflow: hidden;
 }
 
-/* Fade Animation */
 .fade-out {
   animation: fadeOut 0.3s ease-in-out forwards;
 }
@@ -193,7 +192,6 @@ form select:hover {
   box-shadow: 0 4px 15px rgba(237, 28, 36, 0.4);
 }
 
-/* Alert Styles */
 .alert {
   margin-top: 20px;
   border-radius: 12px;

@@ -8,10 +8,13 @@
     <link href="https://fonts.googleapis.com/css?family=Sansation:400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/register.css" />
     <link rel="stylesheet" href="/css/layouts.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
+    <div class="fixed inset-0 -z-10 w-full h-full" style="background: url('/image/2f62a9e4e4228410b9e75c7048295b5b.jpg') center center / cover no-repeat;"></div>
     <div class="nocaret">
-    <div class="dashboard-bg{{ Auth::user()->role === 'koor' ? ' koor-background' : '' }}">
+    <div class="dashboard-bg">
         <div id="navbarSpoiler" class="navbar-spoiler">
             <span class="navbar-spoiler-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ed1c24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -44,7 +47,7 @@
                     <div style="flex:0 0 auto; display:flex; align-items:center; justify-content:flex-end; margin-left:auto;">
                         <a href='#' class='profile-btn' id='notifBell' style='position:relative;'>
                             <span style='display:inline-block; vertical-align:middle;'>
-                                <svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='#ed1c24' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9'/><path d='M13.73 21a2 2 0 0 1-3.46 0'/></svg>
+                                <svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='#00AEEF' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9'/><path d='M13.73 21a2 2 0 0 1-3.46 0'/></svg>
                             </span>
                             @php $notifCount = (isset($pendingCount) ? $pendingCount : 0) + (isset($lateCount) ? $lateCount : 0); @endphp
                             @if($notifCount > 0)
@@ -52,15 +55,12 @@
                             @endif
                         </a>
                     </div>
-                @elseif(Auth::user()->role === 'general')
-                    <a href="{{ route('general.peminjaman.create') }}" class="profile-btn">Ajukan Peminjaman</a>
-                @elseif(Auth::user()->role === 'ICT')
+                @else
                     <a href="{{ route('dashboard') }}" class="profile-btn home-btn-navbar">
                         <span style='display:inline-block; vertical-align:middle; margin-right:7px;'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 12L12 3l9 9'/><path d='M9 21V9h6v12'/></svg>
                         </span>Home
                     </a>
-                    <a href="{{ route('ict.peminjaman.list') }}" class="profile-btn">Riwayat Peminjaman</a>
                 @endif
             </div>
             <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
@@ -76,7 +76,6 @@
             @yield('content')
         </div>
     </div>
-    <!-- Modal Profile -->
     <div class="modal-profile-bg" id="modalProfileBg">
         <div class="modal-profile" id="modalProfileBox">
             <div style="text-align:center; margin-bottom:18px;">
@@ -94,12 +93,12 @@
                     <span class="profile-info-value">{{ Auth::user()->name }}</span>
                 </div>
                 <div class="profile-overview-row">
-                    <span class="profile-overview-icon">✉️</span>
+                    <span class="profile-overview-icon">✉</span>
                     <span class="profile-info-label">Email</span>
                     <span class="profile-info-value">{{ Auth::user()->email }}</span>
                 </div>
                 <div class="profile-overview-row">
-                    <span class="profile-overview-icon">🛡️</span>
+                    <span class="profile-overview-icon">🛡</span>
                     <span class="profile-info-label">Division</span>
                     <span class="profile-info-value">{{ Auth::user()->role }}</span>
                 </div>
@@ -144,4 +143,4 @@
         });
     </script>
 </body>
-</html> 
+</html>

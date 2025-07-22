@@ -11,7 +11,6 @@ class TaskController extends Controller
 {
     public function create()
     {
-        // Hanya koor (super user) yang bisa create
         if (Auth::user()->role !== 'koor') {
             abort(403);
         }
@@ -21,7 +20,6 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        // Hanya koor (super user) yang bisa store
         if (Auth::user()->role !== 'koor') {
             abort(403);
         }
@@ -29,22 +27,42 @@ class TaskController extends Controller
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'tenggat_waktu' => 'required|date',
-            'pic' => 'required|string|max:255',
+            'pic' => 'required|array|min:1',
+            'pic.*' => 'required',
+            'pic_other' => 'required_if:pic,other',
             'progress' => 'required|integer|min:0|max:100',
             'file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,txt,jpg,jpeg,png|max:2048',
         ]);
         $validated['created_by'] = Auth::id();
+        $pic = $request->pic;
+        if (in_array('other', $pic)) {
+            $others = array_map('trim', explode(',', $request->pic_other));
+            $pic = array_diff($pic, ['other']);
+            $pic = array_merge($pic, $others);
+        }
+        $validated['pic'] = json_encode(array_values($pic));
+        unset($validated['pic_other']);
         if ($request->hasFile('file')) {
             $validated['file'] = $request->file('file')->store('tasks', 'public');
         }
         Task::create($validated);
-        return redirect()->route('dashboard')->with('success', 'Pekerjaan berhasil ditambahkan!');
+        return redirect()->route('koor.progress')->with('success', 'Pekerjaan berhasil ditambahkan!');
     }
 
     public function edit(Task $task)
     {
-        // Hanya koor dan ICT yang bisa edit
-        if (!in_array(Auth::user()->role, ['koor', 'ICT'])) {
+        if (Auth::user()->role === 'ICT') {
+            $pics = $task->pic;
+            if (is_string($pics)) {
+                $pics = json_decode($pics, true);
+            }
+            if (!is_array($pics)) {
+                $pics = [$pics];
+            }
+            if (!in_array(Auth::user()->name, array_map('trim', $pics))) {
+                abort(403);
+            }
+        } else if (Auth::user()->role !== 'koor') {
             abort(403);
         }
         $ictUsers = User::where('role', 'ICT')->orderBy('name')->get();
@@ -53,48 +71,80 @@ class TaskController extends Controller
 
     public function update(Request $request, Task $task)
     {
-        // Hanya koor dan ICT yang bisa update
-        if (!in_array(Auth::user()->role, ['koor', 'ICT'])) {
+        if (Auth::user()->role === 'ICT') {
+            $pics = $task->pic;
+            if (is_string($pics)) {
+                $pics = json_decode($pics, true);
+            }
+            if (!is_array($pics)) {
+                $pics = [$pics];
+            }
+            if (!in_array(Auth::user()->name, array_map('trim', $pics))) {
+                abort(403);
+            }
+            $validated = $request->validate([
+                'progress' => 'required|integer|min:0|max:100',
+                'file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,txt,jpg,jpeg,png|max:2048',
+            ]);
+            if ($request->hasFile('file')) {
+                $validated['file'] = $request->file('file')->store('tasks', 'public');
+            }
+            $task->update($validated);
+            return redirect()->route('dashboard')->with('success', 'Progress berhasil diperbarui!');
+        } else if (Auth::user()->role !== 'koor') {
             abort(403);
         }
-        if (Auth::user()->role === 'ICT') {
-            $validated = $request->validate([
-                'progress' => 'required|integer|min:0|max:100',
-                'file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,txt,jpg,jpeg,png|max:2048',
-            ]);
-            if ($request->hasFile('file')) {
-                $validated['file'] = $request->file('file')->store('tasks', 'public');
-            }
-            $task->update($validated);
-        } else {
-            $validated = $request->validate([
-                'nama' => 'required|string|max:255',
-                'deskripsi' => 'required|string',
-                'tenggat_waktu' => 'required|date',
-                'pic' => 'required|string|max:255',
-                'progress' => 'required|integer|min:0|max:100',
-                'file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,txt,jpg,jpeg,png|max:2048',
-            ]);
-            if ($request->hasFile('file')) {
-                $validated['file'] = $request->file('file')->store('tasks', 'public');
-            }
-            $task->update($validated);
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'tenggat_waktu' => 'required|date',
+            'pic' => 'required|array|min:1',
+            'pic.*' => 'required',
+            'pic_other' => 'required_if:pic,other',
+            'progress' => 'required|integer|min:0|max:100',
+            'file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,txt,jpg,jpeg,png|max:2048',
+        ]);
+        $pic = $request->pic;
+        if (in_array('other', $pic)) {
+            $others = array_map('trim', explode(',', $request->pic_other));
+            $pic = array_diff($pic, ['other']);
+            $pic = array_merge($pic, $others);
         }
-        return redirect()->route('dashboard')->with('success', 'Pekerjaan berhasil diperbarui!');
+        $validated['pic'] = json_encode(array_values($pic));
+        unset($validated['pic_other']);
+        if ($request->hasFile('file')) {
+            $validated['file'] = $request->file('file')->store('tasks', 'public');
+        }
+        $task->update($validated);
+        return redirect()->route('koor.progress')->with('success', 'Pekerjaan berhasil diperbarui!');
     }
 
     public function destroy(Task $task)
     {
-        // Hanya koor (super user) yang bisa delete
+        
         if (Auth::user()->role !== 'koor') {
             abort(403);
         }
         $task->delete();
-        return redirect()->route('dashboard')->with('success', 'Pekerjaan berhasil dihapus!');
+        return redirect()->route('koor.progress')->with('success', 'Pekerjaan berhasil dihapus!');
     }
 
     public function show(Task $task)
     {
+        if (Auth::user()->role === 'ICT') {
+            $pics = $task->pic;
+            if (is_string($pics)) {
+                $pics = json_decode($pics, true);
+            }
+            if (!is_array($pics)) {
+                $pics = [$pics];
+            }
+            if (!in_array(Auth::user()->name, array_map('trim', $pics))) {
+                abort(403);
+            }
+        } else if (Auth::user()->role !== 'koor') {
+            abort(403);
+        }
         return view('tasks.show', compact('task'));
     }
 
@@ -109,8 +159,8 @@ class TaskController extends Controller
 
     public function pdfProgress(Task $task)
     {
-        // Hanya koor atau ICT yang merupakan PIC yang bisa melihat
-        if (Auth::user()->role === 'ICT' && $task->pic !== Auth::user()->name) {
+        
+        if (Auth::user()->role === 'ICT' && !in_array(Auth::user()->name, array_map('trim', explode(',', $task->pic)))) {
             abort(403);
         }
         return view('tasks.pdf_progress', compact('task'));
@@ -118,8 +168,8 @@ class TaskController extends Controller
 
     public function downloadPdfProgress(Task $task)
     {
-        // Hanya koor atau ICT yang merupakan PIC yang bisa download
-        if (Auth::user()->role === 'ICT' && $task->pic !== Auth::user()->name) {
+
+        if (!(Auth::user()->role === 'koor' || Auth::user()->role === 'ICT')) {
             abort(403);
         }
         if (Auth::user()->role === 'ICT') {
@@ -127,7 +177,7 @@ class TaskController extends Controller
         } else {
             $pdf = \PDF::loadView('tasks.pdf_progress_download', compact('task'));
         }
-        $filename = 'Progress_' . str_replace(' ', '_', $task->nama) . '_' . $task->id . '.pdf';
+        $filename = 'Progress_' . str_replace(' ', '', $task->nama) . '' . $task->id . '.pdf';
         return $pdf->download($filename);
     }
-} 
+}
