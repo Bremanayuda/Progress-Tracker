@@ -11,7 +11,7 @@ html, body {
 }
 
 .register-page {
-  background: linear-gradient(to top, rgba(237, 28, 36, 0.75), rgba(237, 28, 36, 0.25));
+  background: linear-gradient(to top, rgba(87, 30, 245, 0.75), rgba(46, 19, 254, 0.25));
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -163,13 +163,13 @@ form select {
 
 form input:focus,
 form select:focus {
-  border-color: #ed1c24;
+  border-color: #00AEEF;
   transform: scale(1.02);
 }
 
 form input:hover,
 form select:hover {
-  border-color: #ed1c24;
+  border-color: #00AEEF;
   transform: scale(1.01);
 }
 
@@ -177,7 +177,7 @@ form select:hover {
   margin-top: 55px;
   width: 100%;
   padding: 12px;
-  background: #ed1c24;
+  background: #00AEEF;
   color: white;
   font-size: 18px;
   border: none;
@@ -188,7 +188,7 @@ form select:hover {
 }
 
 .submit-btn:hover {
-  background: #c4141a;
+  background: #00AEEF;
   transform: scale(1.05);
   box-shadow: 0 4px 15px rgba(237, 28, 36, 0.4);
 }

@@ -8,7 +8,7 @@ body {
   background: none;
 }
 .retangle-putih {
-  background: #fff;
+  background: #fff; 
   border-radius: 32px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.08);
   padding: 36px 32px 32px 32px;
@@ -279,7 +279,7 @@ body {
 }
 
 .retangle-putih,
-.dashboard-retangle,
+.dashboard-retangle, 
 .edit-profile-card {
   animation: slideInCard 0.7s cubic-bezier(0.4,0.2,0.2,1) both;
 } 

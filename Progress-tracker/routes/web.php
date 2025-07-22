@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\TaskController;
 
 Route::get('/', function () {
     return redirect()->route('register');
@@ -63,4 +64,20 @@ Route::middleware(['auth'])->group(function () {
 // Route List Peminjaman (ICT)
 Route::middleware(['auth'])->group(function () {
     Route::get('/ict/peminjaman', [PeminjamanController::class, 'listICT'])->name('ict.peminjaman.list');
+    Route::get('/ict/progress', [DashboardController::class, 'progressICT'])->name('ict.progress');
+});
+
+// Route Tasks (Koor & ICT)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
+    Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+    Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
+    Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
+    Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+    Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+    
+    // Route untuk progress tracking (koor)
+    Route::get('/koor/progress', [TaskController::class, 'progressKoor'])->name('koor.progress');
+    Route::get('/tasks/{task}/pdf-progress', [TaskController::class, 'pdfProgress'])->name('tasks.pdf_progress');
+    Route::get('/tasks/{task}/download-pdf-progress', [TaskController::class, 'downloadPdfProgress'])->name('tasks.download_pdf_progress');
 });

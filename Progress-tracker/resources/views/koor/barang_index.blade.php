@@ -5,7 +5,7 @@
 
 @if(session('success'))
     <div style="position: fixed; top: 20px; right: 20px; background: #28a745; color: white; padding: 15px 20px; border-radius: 8px; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-        {{ session('success') }}
+        {{ session('success') }} 
     </div>
 @endif
 

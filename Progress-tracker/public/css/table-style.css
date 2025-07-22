@@ -1,0 +1,153 @@
+.form-container {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.form-header {
+  background: #00AEEF;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 16px 16px 0 0;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-header h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.form-header p {
+  color: #ffe4e6;
+  font-size: 1rem;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #00AEEF;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Input dan Textarea */
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  transition: 0.3s;
+  font-family: 'Sansation', sans-serif;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #ed1c24;
+  box-shadow: 0 0 0 3px rgba(237, 28, 36, 0.15);
+  outline: none;
+}
+
+/* Error Box */
+.form-error {
+  background: #fef2f2;
+  border: 2px solid #fecaca;
+  color: #b91c1c;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* Submit & Back Buttons */
+.btn-submit {
+  width: 100%;
+  background: #ed1c24;
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+  background: #c4141a;
+  transform: scale(1.02);
+}
+
+.btn-back {
+  display: inline-block;
+  background: #ffffff;
+  color: #ed1c24;
+  border: 2px solid #ed1c24;
+  padding: 0.9rem 2.5rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  text-decoration: none;
+}
+
+.btn-back:hover {
+  background: #f3f4f6;
+  transform: scale(1.02);
+}
+
+/* Responsive form */
+@media (max-width: 640px) {
+  .form-container {
+    padding: 1.5rem;
+  }
+
+  .form-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    font-size: 0.95rem;
+  }
+}
+
+.simpan-btn {
+  background: #00AEEF;
+  color: white;
+  padding: 12px 40px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s, transform 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 160px;
+  text-align: center;
+  margin-top: 40px;
+}
+.simpan-btn:hover {
+  background: linear-gradient(
+    rgba(67, 176, 42, 0.3) 0%,  
+    rgba(67, 176, 42, 1) 100%
+  );
+  transform: scale(1.03);
+}

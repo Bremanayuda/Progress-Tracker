@@ -4,7 +4,7 @@
 
 @section('content')
 <link rel="stylesheet" href="/css/koor-barang.css">
-<link rel="stylesheet" href="/css/koor-dashboard.css">
+<link rel="stylesheet" href="/css/koor-dashboard.css"> 
     <div id="notifModal" style="display:none; position:fixed; top:70px; right:40px; z-index:9999; background:#fff; border-radius:12px; box-shadow:0 2px 16px rgba(0,0,0,0.13); min-width:320px; max-width:90vw; padding:18px 20px;">
         <div style="font-weight:700; font-size:17px; margin-bottom:10px; color:#ed1c24;">Notifikasi</div>
         <div style="margin-bottom:10px;">
@@ -17,14 +17,13 @@
     </div>
 </div>
 
-<!-- START DASHBOARD RETANGLE -->
 <div class="nocaret">
 <div class="dashboard-retangle-wrapper">
   <div class="dashboard-retangle">
     <img class="logo-pertamina" src="/image/Logo.png" alt="Logo Pertamina" />
     <nav class="navigation">
       <a href="{{ route('koor.peminjaman.page') }}" class="button peminjaman">PEMINJAMAN</a>
-      <a href="#" class="button peminjaman">PROGRESS</a>
+      <a href="{{ route('koor.progress') }}" class="button peminjaman">PROGRESS</a>
     </nav>
     <!-- Konten dashboard lain tetap di sini -->
     </div>

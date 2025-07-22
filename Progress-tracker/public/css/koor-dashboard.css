@@ -71,8 +71,8 @@
     border-radius: 38px;
     background: linear-gradient(
         0deg,
-        rgba(237, 28, 36, 0.3) 0%,
-        rgba(237, 28, 36, 1) 100%
+        rgba(0, 174, 239, 0.3) 0%,   
+        rgba(0, 90, 169, 1) 100% 
     );
     display: flex;
     justify-content: center;
@@ -96,8 +96,8 @@
 .button.peminjaman, .button.progress {
   background: linear-gradient(
     0deg,
-    rgba(237, 28, 36, 0.3) 0%,
-    rgba(237, 28, 36, 1) 100%
+    rgba(0, 174, 239, 0.3) 0%,   /* #00AEEF dengan opacity 0.3 */
+    rgba(0, 90, 169, 1) 100% 
   );
   border: none;
   border-radius: 38px;
@@ -117,8 +117,8 @@
   transform: translateY(-2px) scale(1.04);
   background: linear-gradient(
     0deg,
-    rgba(237, 28, 36, 0.5) 0%,
-    rgba(237, 28, 36, 1) 100%
+  rgba(67, 176, 42, 0.3) 0%,  /* hijau dengan opacity 0.3 */
+  rgba(67, 176, 42, 1) 100%
   );
 }
 
@@ -161,14 +161,14 @@
 }
 .dashboard-retangle {
   background: #fff;
-  border-radius: 32px;
+  border-radius: 32px; 
   box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.08);
   padding: 36px 32px 32px 32px;
   max-width: 900px;
   min-width: 350px;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   align-items: center;
   justify-content: flex-start;
   transition: box-shadow 0.3s, transform 0.3s;
@@ -194,7 +194,7 @@
 
 /* Styling khusus untuk halaman peminjaman */
 .peminjaman-page .navigation h2 {
-  color: #ed1c24;
+  color: #00AEEF; 
   font-family: 'Sansation', sans-serif;
   font-weight: 700;
   margin-bottom: 20px;
@@ -216,7 +216,7 @@
 
 .peminjaman-page .button.peminjaman {
   width: 300px;
-  background: #fff;
+  background: 	#00AEEF;
   height: 60px;
   font-size: 18px;
   margin-top: -250px;
@@ -231,7 +231,7 @@
 
 .peminjaman-page .dashboard-retangle {
   padding: 48px 32px 32px 32px;
-  background: linear-gradient(to top, rgba(237, 28, 36, 0.75), rgba(237, 28, 36, 0.25));
+  background: #fff;
   min-height: 500px;
   justify-content: center;
 }
@@ -287,8 +287,8 @@
 
 .gudang:hover, .riwayat:hover {
   transform: scale(1.08) translateY(-8px) rotate(3deg);
-  box-shadow: 0 12px 35px rgba(0,0,0,0.25), 0 0 25px rgba(237, 28, 36, 0.4);
-  border-color: #ed1c24;
+  box-shadow: 0 12px 35px rgba(0, 174, 239, 0.3) 0%, 0 0 25px rgba(0, 90, 169, 1) 100%;
+  border-color: 	#43B02A;
   filter: brightness(1.15) contrast(1.1);
   animation: none;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -330,7 +330,7 @@
   font-family: 'Sansation', sans-serif;
   font-size: 30px;
   font-weight: 600;
-  color: #ffffff;
+  color: 	#00AEEF;
   text-align: center;
   text-decoration: none;
 }

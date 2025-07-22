@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Peminjaman;
+use App\Models\Task;
 
 class DashboardController extends Controller
 {
@@ -21,7 +22,8 @@ class DashboardController extends Controller
                     ->count();
                 return view('koor.dashboard', compact('pendingCount', 'lateCount'));
             case 'ICT':
-                return view('ict.dashboard');
+                $tasks = Task::where('pic', $user->name)->orderByDesc('created_at')->get();
+                return view('ict.dashboard', compact('tasks'));
             default:
                 // Ambil peminjaman milik user general yang belum dikembalikan
                 $peminjaman = Peminjaman::where('user_id', $user->id)
@@ -30,5 +32,14 @@ class DashboardController extends Controller
                     ->first();
                 return view('general.dashboard', compact('peminjaman'));
         }
+    }
+
+    public function progressICT()
+    {
+        if (Auth::user()->role !== 'ICT') {
+            abort(403);
+        }
+        $tasks = Task::where('pic', Auth::user()->name)->orderByDesc('created_at')->get();
+        return view('ict.progress', compact('tasks'));
     }
 } 

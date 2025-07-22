@@ -55,6 +55,11 @@
                 @elseif(Auth::user()->role === 'general')
                     <a href="{{ route('general.peminjaman.create') }}" class="profile-btn">Ajukan Peminjaman</a>
                 @elseif(Auth::user()->role === 'ICT')
+                    <a href="{{ route('dashboard') }}" class="profile-btn home-btn-navbar">
+                        <span style='display:inline-block; vertical-align:middle; margin-right:7px;'>
+                            <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 12L12 3l9 9'/><path d='M9 21V9h6v12'/></svg>
+                        </span>Home
+                    </a>
                     <a href="{{ route('ict.peminjaman.list') }}" class="profile-btn">Riwayat Peminjaman</a>
                 @endif
             </div>

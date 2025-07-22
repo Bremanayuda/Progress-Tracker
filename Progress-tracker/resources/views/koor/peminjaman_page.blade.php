@@ -6,11 +6,10 @@
 <link rel="stylesheet" href="/css/koor-barang.css">
 <link rel="stylesheet" href="/css/koor-dashboard.css">
 
-<!-- START DASHBOARD RETANGLE -->
 <div class="nocaret peminjaman-page">
 <div class="dashboard-retangle-wrapper">
   <div class="dashboard-retangle">
-    <img class="logo-pertamina" src="/image/Logo.png" alt="Logo Pertamina" />
+    <img class="logo-pertamina" src="/image/Logo.png" alt="Logo Pertamina" /> 
     <div class="kotak1">
       <a href="{{ route('koor.barang.index') }}">
         <img class="gudang" src="/image/gudang.jpg" alt="Daftar Barang">
@@ -24,13 +23,12 @@
        <p class="label-box">Riwayat Peminjaman</p> 
     </div>
     <div class="navigation">
-      <a href="{{ route('dashboard') }}" class="button peminjaman" style="color: #ed1c24">
+      <a href="{{ route('dashboard') }}" class="button peminjaman" style="color: 	#ffffff">
         Kembali ke Dashboard
       </a>
     </div>
   </div>
 </div>
 </div>
-<!-- END DASHBOARD RETANGLE -->
 
 @endsection 

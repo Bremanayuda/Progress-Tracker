@@ -23,7 +23,7 @@
                 <div class="form-control" style="background:#f8f9fa;">{{ $peminjaman->jumlah_pinjam }}</div>
             </div>
             <div class="form-group mb-3">
-                <label>Tanggal Pinjam Dari</label>
+                <label>Tanggal Pinjam</label>
                 <div class="form-control" style="background:#f8f9fa;">{{ $peminjaman->tanggal_pinjam }}</div>
             </div>
             <div class="form-group mb-3">
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="form-group mb-3">
-                <label>Tanggal Pinjam Hingga</label>
+                <label>Tanggal pengembalian</label>
                 @if($peminjaman->deadline)
                     <div class="form-control" style="background:#f8f9fa;">{{ $peminjaman->deadline }}</div>
                 @else

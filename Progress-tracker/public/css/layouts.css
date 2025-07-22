@@ -7,7 +7,7 @@ body, html {
 }
 .dashboard-bg {
     min-height: 100vh;
-    background: linear-gradient(to top, rgba(237, 28, 36, 0.75), rgba(237, 28, 36, 0.25));
+    background: #005AA9;
     display: flex;
     flex-direction: column;
 }
@@ -56,7 +56,7 @@ body, html {
     height: 36px;
     border-radius: 50%;
     background: #fff;
-    color: #ed1c24;
+    color: #00AEEF;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,7 +66,7 @@ body, html {
     border: 2px solid #fff;
 }
 .logout-btn-navbar {
-    background: #ed1c24;
+    background: #00AEEF;
     color: #fff;
     font-weight: 500;
     border-radius: 20px;
@@ -78,7 +78,7 @@ body, html {
 }
 .logout-btn-navbar:hover {
     background: rgba(255,255,255,0.15);
-    color: #ed1c24;
+    color: #00AEEF;
 }
 .dashboard-content {
     flex: 1;
@@ -136,13 +136,13 @@ body, html {
 }
 .profile-overview-icon {
     font-size: 22px;
-    color: #ed1c24;
+    color: #00AEEF;
     width: 32px;
     text-align: center;
 }
 .profile-info-label {
     font-weight: bold;
-    color: #ed1c24;
+    color: #00AEEF;
     min-width: 80px;
     font-size: 15px;
 }
@@ -154,7 +154,7 @@ body, html {
     text-align: right;
 }
 .btn-detail-profile {
-    background: #ed1c24;
+    background: #00AEEF;
     color: #fff;
     border: none;
     border-radius: 24px;
@@ -167,11 +167,11 @@ body, html {
     transition: background 0.2s, box-shadow 0.2s;
 }
 .btn-detail-profile:hover {
-    background: #c4141a;
+    background: #00AEEF;
     box-shadow: 0 4px 16px rgba(237,28,36,0.15);
 }
 .home-btn-navbar {
-    background: #ed1c24;
+    background: #00AEEF;
     color: #fff;
     font-weight: 500;
     border-radius: 20px;
@@ -187,14 +187,14 @@ body, html {
 }
 .home-btn-navbar:hover {
     background: rgba(255,255,255,0.15);
-    color: #ed1c24;
+    color: #00AEEF;
 }
 .dashboard-bg, .navbar-dashboard, .profile-btn, .logout-btn-navbar, .home-btn-navbar {
     box-sizing: border-box;
 }
 .profile-btn, .logout-btn-navbar, .home-btn-navbar {
     font-family: 'Sansation', sans-serif;
-    color: #ed1c24;
+    color: #00AEEF;
     background: none;
     border: none;
     box-shadow: none;
@@ -202,12 +202,12 @@ body, html {
 }
 .logout-btn-navbar:hover, .home-btn-navbar:hover, .profile-btn:hover {
     background: none;
-    color: #c4141a;
+    color: #00AEEF;
     transform: scale(1.12);
 }
 .logout-btn-navbar svg,
 .home-btn-navbar svg {
-    stroke: #ed1c24 !important;
+    stroke: #00AEEF !important;
 }
 
 .wrapper{
@@ -265,7 +265,7 @@ body, html {
     margin-top: 32px;
     width: 100%;
     padding: 12px;
-    background: #ed1c24;
+    background: #00AEEF;
     color: white;
     font-size: 18px;
     border: none;
@@ -277,7 +277,7 @@ body, html {
     font-weight: bold;
 }
 .save-profile-btn:hover {
-    background: #c4141a;
+    background: #00AEEF;
     transform: scale(1.05);
     box-shadow: 0 4px 15px rgba(237, 28, 36, 0.4);
 }
