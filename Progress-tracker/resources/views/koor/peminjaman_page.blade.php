@@ -16,7 +16,7 @@
       </a>
       <p class="label-box">Daftar Barang</p>
     </div>
-    <div class="kotak2">
+    <div class="kotak2"> 
       <a href="{{ route('koor.peminjaman.index') }}">
         <img class="riwayat" src="/image/riwayat.jpg" alt="Riwayat Peminjaman">
       </a>

@@ -173,7 +173,15 @@ tr:hover {
   transform: scale(1.05);
 }
 .btn-mini:not(:last-child) {
-  margin-right: 10px;
+  margin-right: 0;
+}
+
+.aksi-btn-group {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
 }
 
 .tambah-progress {
@@ -202,4 +210,31 @@ tr:hover {
   display: flex;
   justify-content: center;
   gap: 16px;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.slide-page {
+  animation: slideInRight 0.7s cubic-bezier(0.4,0.8,0.2,1) both;
+}
+
+.slide-title {
+  animation: slideInRight 0.7s cubic-bezier(0.4,0.8,0.2,1) both;
+  animation-delay: 0.1s;
+}
+.slide-table {
+  animation: slideInRight 0.7s cubic-bezier(0.4,0.8,0.2,1) both;
+  animation-delay: 0.4s;
+}
+.slide-btns {
+  animation: slideInRight 0.7s cubic-bezier(0.4,0.8,0.2,1) both;
+  animation-delay: 0.7s;
 }

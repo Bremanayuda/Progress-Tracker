@@ -299,3 +299,8 @@ input, textarea, [contenteditable="true"] {
   caret-color: auto;
   user-select: auto;
 }
+
+.dashboard-bg.koor-background {
+    background: url('/image/background_pertamina.jpg') no-repeat center center fixed;
+    background-size: cover;
+}

@@ -25,7 +25,7 @@
       <a href="{{ route('koor.peminjaman.page') }}" class="button peminjaman">PEMINJAMAN</a>
       <a href="{{ route('koor.progress') }}" class="button peminjaman">PROGRESS</a>
     </nav>
-    <!-- Konten dashboard lain tetap di sini -->
+    
     </div>
   </div>
 </div>
